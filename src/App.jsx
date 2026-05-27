@@ -848,10 +848,6 @@ export default function DiagHQ() {
         <div className="onboarding-card">
           {screen === "welcome" ? (
             <>
-              <div className="welcome-badge">
-                🚀
-              </div>
-
               <h2 className="welcome-title">
                 Let's get you set up
                 <br />

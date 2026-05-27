@@ -13,7 +13,7 @@ connectDB();
 
 app.use(cors(
   {
-    origin: "https://diag-onboarding.vercel.app/",
+    origin: true,
     credentials: true,
   }
 ));
@@ -22,7 +22,7 @@ app.use(express.json());
 app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Diag API Running 🚀");
+  res.send("Diag API Running ");
 });
 
 const PORT = process.env.PORT || 5000;
