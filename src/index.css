@@ -1,0 +1,790 @@
+/* ==========================================================================
+   1. CORE BASE STYLES
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f5f7ff;
+  color: #111827;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+.diag-app {
+  min-height: 100vh;
+  display: flex;
+  background: #f5f7ff;
+}
+
+/* ==========================================================================
+   2. SHARED REUSABLE COMPONENTS (LOGOS, BUTTONS, INPUTS)
+   ========================================================================== */
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.D-logo img {
+  width: 25px;
+  height: 26px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.avatar {
+  width: var(--avatar-size, 32px);
+  height: var(--avatar-size, 32px);
+  border-radius: 50%;
+  background: #4f46e5;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.google-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.text-field {
+  margin-bottom: 22px;
+}
+
+.text-field label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.text-input,
+.workspace-select {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  padding: 0 16px;
+  font-size: 15px;
+  background: #ffffff;
+  transition: 0.2s;
+}
+
+.text-input:focus,
+.workspace-select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+
+.workspace-select.empty {
+  color: #9ca3af;
+}
+
+.btn-primary {
+  border: none;
+  background: #4f46e5;
+  color: white;
+  height: 52px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: 0.2s;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #4338ca;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary.full {
+  width: 100%;
+}
+
+.btn-sm {
+  height: 42px;
+  font-size: 14px;
+}
+
+.btn-ghost {
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid #d1d5db;
+  background: white;
+  padding: 0 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   3. MULTI-STEP ONBOARDING SIDEBAR
+   ========================================================================== */
+.onboarding-sidebar {
+  width: 320px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-caption {
+  margin-top: 40px;
+  font-size: 13px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.sidebar-step-list {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-step-row {
+  position: relative;
+}
+
+.sidebar-step-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.sidebar-step-dot {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  background: white;
+  color: #6b7280;
+  z-index: 2;
+}
+
+.sidebar-step-dot.active,
+.sidebar-step-dot.done {
+  background: #4f46e5;
+  border-color: #4f46e5;
+  color: white;
+}
+
+.sidebar-step-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.sidebar-step-title.active {
+  color: #111827;
+}
+
+.sidebar-step-desc {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 2px;
+}
+
+.sidebar-step-connector {
+  position: absolute;
+  left: 16px;
+  top: 34px;
+  width: 2px;
+  height: 34px;
+  background: #e5e7eb;
+}
+
+.sidebar-step-connector.done {
+  background: #4f46e5;
+}
+
+.sidebar-help {
+  margin-top: auto;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.sidebar-help span {
+  color: #4f46e5;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   4. ONBOARDING SCREEN INTERFACES & CARD PANELS
+   ========================================================================== */
+.onboarding-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.onboarding-card {
+  width: 100%;
+  max-width: 620px;
+  background: white;
+  border-radius: 28px;
+  padding: 42px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.onboarding-progress {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.progress-step {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.progress-step.active {
+  background: #4f46e5;
+}
+
+.onboarding-actions {
+  margin-top: 32px;
+  display: flex;
+  gap: 14px;
+}
+
+.error-box {
+  margin-bottom: 22px;
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  padding: 14px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+}
+
+/* Welcome Phase Elements */
+.welcome-badge {
+  width: 70px;
+  height: 70px;
+  background: #eef2ff;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 28px;
+}
+
+.welcome-title {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.welcome-subtitle {
+  margin-top: 18px;
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.welcome-step-list {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.welcome-step-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.welcome-step-number {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #eef2ff;
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.welcome-step-label {
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Individual Form Step Structural Architecture */
+.section-header {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  color: #6b7280;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.role-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.goal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.goal-option {
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.goal-option.selected {
+  border-color: #4f46e5;
+  background: #eef2ff;
+}
+
+.goal-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid #c7d2fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.goal-option.selected .goal-checkbox {
+  background: #4f46e5;
+  border-color: #4f46e5;
+}
+
+.invite-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.remove-email {
+  width: 52px;
+  border: none;
+  background: #fee2e2;
+  color: #991b1b;
+  border-radius: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-email {
+  margin-top: 10px;
+  border: none;
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.skip-text {
+  margin-top: 20px;
+  text-align: center;
+  color: #6b7280;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* ==========================================================================
+   5. WORKSPACE MANAGEMENT DASHBOARD
+   ========================================================================== */
+.dashboard-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fb;
+  width: 100%;
+}
+
+.dashboard-sidebar {
+  width: 240px;
+  background: #ffffff;
+  border-right: 1px solid #ececec;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-logo {
+  margin-bottom: 40px;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dash-nav-item {
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  cursor: pointer;
+  color: #777777;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.dash-nav-item.active {
+  background: #eef2ff;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* Free Trial Module Widget */
+.trial-card {
+  background: #f8f7ff;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.trial-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.trial-card h4 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.trial-card p {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.trial-card button {
+  width: 100%;
+  height: 44px;
+  border: none;
+  background: #4f46e5;
+  color: #ffffff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Centralized Workspace View Engine */
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.dashboard-header {
+  height: 72px;
+  background: #ffffff;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+}
+
+.header-search {
+  width: 340px;
+  height: 42px;
+  background: #f5f7fb;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+}
+
+.header-search input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.notification-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 12px;
+  background: #f5f7fb;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  background: #635bff;
+  border-radius: 50%;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.dashboard-content {
+  padding: 28px;
+  background: #f5f7fb;
+  flex: 1;
+}
+
+.dashboard-welcome h1 {
+  font-size: 30px;
+  color: #111827;
+  margin-bottom: 28px;
+}
+
+/* Analytics & Grid Engines */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  border: 1px solid #ececec;
+}
+
+.metric-card span {
+  font-size: 12px;
+  color: #9ca3af;
+  display: block;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.metric-card h2 {
+  font-size: 32px;
+  color: #111827;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.metric-card p {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.metric-card .positive {
+  color: #16a34a;
+}
+
+.metric-card .negative {
+  color: #dc2626;
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #ececec;
+  padding: 20px;
+}
+
+.chart-header {
+  margin-bottom: 20px;
+}
+
+.chart-header p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* User Registration Metrics Database Grid */
+.signup-table-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #ececec;
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.table-header {
+  margin-bottom: 20px;
+}
+
+.table-header h3 {
+  font-size: 20px;
+  color: #111827;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 16px;
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 600;
+  background: #fafafa;
+}
+
+td {
+  padding: 18px 16px;
+  border-top: 1px solid #f1f1f1;
+  font-size: 14px;
+  color: #374151;
+}
+
+.active-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN INTERFACE PIPELINES
+   ========================================================================== */
+@media (max-width: 1100px) {
+  .charts-grid,
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .diag-app {
+    flex-direction: column;
+  }
+  .onboarding-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 30px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .onboarding-panel {
+    padding: 20px;
+  }
+  .onboarding-card {
+    padding: 28px;
+  }
+  .welcome-title {
+    font-size: 28px;
+  }
+  .section-header {
+    font-size: 24px;
+  }
+  .onboarding-actions {
+    flex-direction: column;
+  }
+  .header-search {
+    width: 180px;
+  }
+}

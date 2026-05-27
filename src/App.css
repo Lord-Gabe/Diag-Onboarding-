@@ -1,0 +1,317 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f7f7fb;
+  font-family: Arial, sans-serif;
+}
+
+/* GLOBAL TYPOGRAPHY */
+
+h1 {
+  font-size: 30px;
+  color: #454545;
+  line-height: 1.3;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* MAIN LAYOUT */
+
+.noolu-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  width: 320px;
+  background: white;
+  border-right: 1px solid #ececf3;
+  padding: 40px 28px;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #4f46e5;
+  margin-bottom: 40px;
+}
+
+.step-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #777;
+  font-size: 15px;
+}
+
+.step-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ececf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.active-step {
+  color: #4f46e5;
+  font-weight: bold;
+}
+
+.active-step .step-circle {
+  background: #4f46e5;
+  color: white;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CARD */
+
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 650px;
+  border: 1px solid #ececf3;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* TOP RIGHT STEP COUNTER */
+
+.top-right {
+  position: absolute;
+  top: 30px;
+  right: 35px;
+  color: #777;
+  font-size: 14px;
+}
+
+/* SUBTITLE */
+
+.subtitle {
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* FORM */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #454545;
+  font-weight: 600;
+}
+
+.input-group input,
+.input-group select {
+  height: 50px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 0 14px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+  background: white;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.08);
+}
+
+/* BUTTONS */
+
+.primary-btn {
+  width: 100%;
+  height: 52px;
+  border: none;
+  border-radius: 12px;
+  background: #4f46e5;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.primary-btn:hover {
+  background: #4338ca;
+}
+
+.secondary-btn {
+  width: 100%;
+  height: 52px;
+  border: 1px solid #d7d7e3;
+  border-radius: 12px;
+  background: white;
+  color: #454545;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.secondary-btn:hover {
+  background: #f5f5fc;
+}
+
+/* EXTRA TEXT */
+
+.additions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sign {
+  color: #777;
+  text-align: center;
+  font-size: 14px;
+}
+
+.sign a {
+  color: #4f46e5;
+}
+
+.policy {
+  color: #777;
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.policy a {
+  color: #4f46e5;
+}
+
+/* VERIFICATION SCREEN */
+
+.back-btn {
+  width: fit-content;
+  border: none;
+  background: transparent;
+  color: #777;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.otp-wrapper {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 10px 0 20px;
+}
+
+.otp-input {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 22px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.otp-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.08);
+}
+
+.resend-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.resend-wrapper a {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+  .noolu-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ececf3;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .otp-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .otp-input {
+    width: 50px;
+    height: 50px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+}
