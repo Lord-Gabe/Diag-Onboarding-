@@ -335,7 +335,7 @@ function Dashboard({ userData }) {
 
   useEffect(() => {
     fetch(
-      "http://localhost:5000/api/users/latest-signups/all"
+      `${import.meta.env.VITE_API_URL}/api/users/latest-signups/all`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -677,7 +677,7 @@ export default function DiagHQ() {
         if (!firebaseUser) return;
         try {
           const response = await fetch(
-            `http://localhost:5000/api/users/${firebaseUser.uid}`
+            `${import.meta.env.VITE_API_URL}/api/users/${firebaseUser.uid}`
           );
 
           const data = await response.json();
@@ -711,7 +711,7 @@ export default function DiagHQ() {
 
       const user = result.user;
       const response = await fetch(
-        "http://localhost:5000/api/users/google-login",
+        `${import.meta.env.VITE_API_URL}/api/users/google-login`,
         {
           method: "POST",
           headers: {
@@ -763,7 +763,7 @@ export default function DiagHQ() {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:5000/api/users/complete-onboarding",
+        `${import.meta.env.VITE_API_URL}/api/users/complete-onboarding`,
         {
           method: "POST",
           headers: {
