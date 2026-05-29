@@ -32,3 +32,4 @@ export function validateStep(step, form) {
 
   return null;
 }
+// Now invalid but stored for future reference.

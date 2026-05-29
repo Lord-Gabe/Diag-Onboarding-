@@ -14,7 +14,6 @@ router.post("/google-login", async (req, res) => {
     } = req.body;
 
     let user = await User.findOne({ firebaseUID });
-
     if (!user) {
       user = await User.create({
         firebaseUID,
@@ -31,19 +30,16 @@ router.post("/google-login", async (req, res) => {
     });
 
   } catch (err) {
-
     res.status(500).json({
       success: false,
       message: err.message,
     });
-
   }
 });
 
 // GET USER
 router.get("/:firebaseUID", async (req, res) => {
   try {
-
     const user = await User.findOne({
       firebaseUID: req.params.firebaseUID,
     });
@@ -54,19 +50,16 @@ router.get("/:firebaseUID", async (req, res) => {
     });
 
   } catch (err) {
-
     res.status(500).json({
       success: false,
       message: err.message,
     });
-
   }
 });
 
 // COMPLETE ONBOARDING
 router.post("/complete-onboarding", async (req, res) => {
   try {
-
     const {
       firebaseUID,
       name,
@@ -103,32 +96,26 @@ router.post("/complete-onboarding", async (req, res) => {
     });
 
   } catch (err) {
-
     res.status(500).json({
       success: false,
       message: err.message,
     });
-
   }
 });
 
 // LATEST SIGNUPS
 router.get("/latest-signups/all", async (req, res) => {
   try {
-
     const users = await User.find()
       .sort({ createdAt: -1 })
       .limit(10);
-
     res.json(users);
 
   } catch (err) {
-
     res.status(500).json({
       success: false,
       message: err.message,
     });
-
   }
 });
 

@@ -6,7 +6,6 @@ import { sendVerificationEmail } from "../utils/sendEmail.js";
 
 export const signup = async (req, res) => {
   try {
-
     const {
       name,
       email,
@@ -19,7 +18,6 @@ export const signup = async (req, res) => {
     } = req.body;
 
     const existing = await User.findOne({ email });
-
     if (existing) {
       return res.status(400).json({
         success: false,
@@ -28,7 +26,6 @@ export const signup = async (req, res) => {
     }
 
     const hashed = await bcrypt.hash(password, 10);
-
     const code = Math.floor(
       100000 + Math.random() * 900000
     ).toString();
@@ -46,28 +43,22 @@ export const signup = async (req, res) => {
     });
 
     await sendVerificationEmail(email, code);
-
     res.json({
       success: true,
       message: "Verification code sent",
     });
 
   } catch (err) {
-
     res.status(500).json({
       success: false,
       message: err.message,
     });
-
   }
 };
 
 export const verifyEmail = async (req, res) => {
-
   try {
-
     const { email, code } = req.body;
-
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -85,9 +76,7 @@ export const verifyEmail = async (req, res) => {
     }
 
     user.verified = true;
-
     user.verificationCode = "";
-
     await user.save();
 
     const token = jwt.sign(
@@ -103,32 +92,27 @@ export const verifyEmail = async (req, res) => {
     });
 
   } catch (err) {
-
     res.status(500).json({
       success: false,
       message: err.message,
     });
-
   }
 };
 
 export const getUser = async (req, res) => {
-
   try {
-
     const user = await User.findById(req.user.id);
-
     res.json({
       success: true,
       user,
     });
 
   } catch (err) {
-
     res.status(500).json({
       success: false,
       message: err.message,
     });
-
   }
 };
+
+// This is inactive since we are using Google SSO, but can be used for email/password auth for future refernence
